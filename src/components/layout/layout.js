@@ -148,7 +148,7 @@ class Index extends Component {
                 </IconButton>
               </div>
               <Divider />
-              <Treeview></Treeview>
+              <Treeview listItems={this.props.menuConfig}></Treeview>
             </div>
           </Drawer>
           <main className={classNames(classes.content, this.state.open && classes.contentShift)}>

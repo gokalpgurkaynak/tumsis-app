@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
 
 import MuiTreeList from './MuiTreeList'
-import listItems  from './data'
-
-const files = listItems
-  .map((listItem, i) => {
-    if (!listItem.children) {
-      return i
-    } else {
-      return null
-    }
-  })
-  .filter((listItemIndex) => !!listItemIndex)
+//import listItems  from './data'
 
 class Treeview extends Component {
 
   constructor(props){
     super(props)
 
-    const firstFile = files[0]
     
-    const listItemIsEnabled = listItems.map((listItem, i) => {
+    const listItemIsEnabled = this.props.listItems.map((listItem, i) => {
 			if (i >= 12) {
 				return false
 			} else {
@@ -28,11 +17,23 @@ class Treeview extends Component {
 			}
 		})
 
+		const files = this.props.listItems
+			.map((listItem, i) => {
+				if (!listItem.children) {
+					return i
+				} else {
+					return null
+				}
+			})
+			.filter((listItemIndex) => !!listItemIndex)
+	
+		const firstFile = files[0]
+			
 		this.state = {
 			expandedListItems: [],
 			activeListItem: firstFile,
 			listItemIsEnabled,
-			listItems,
+			listItems: [...this.props.listItems],
 			searchTerm: ''
 		}
     
@@ -76,7 +77,7 @@ class Treeview extends Component {
 
 	handleTouchTapInSearchMode(listItem, index) {
 		if (!listItem.children) {
-			const expandedListItems = getAllParents(listItem, listItems)
+			const expandedListItems = getAllParents(listItem, this.props.listItems)
 
 			this.setState({
 				activeListItem: index,
@@ -87,8 +88,8 @@ class Treeview extends Component {
 	}
 
 	moveToPrev() {
-		const index = files.indexOf(this.state.activeListItem)
-		const nextActiveListItem = files[files.indexOf(this.state.activeListItem) - 1]
+		const index = this.files.indexOf(this.state.activeListItem)
+		const nextActiveListItem = this.files[this.files.indexOf(this.state.activeListItem) - 1]
 		if (index !== 0 && !this.state.listItems[nextActiveListItem].disabled) {
 			this.setState({
 				activeListItem: nextActiveListItem
@@ -97,9 +98,9 @@ class Treeview extends Component {
 	}
 
 	moveToNext() {
-		const index = files.indexOf(this.state.activeListItem)
-		const nextActiveListItem = files[files.indexOf(this.state.activeListItem) + 1]
-		if (index !== files.length - 1 && !this.state.listItems[nextActiveListItem].disabled) {
+		const index = this.files.indexOf(this.state.activeListItem)
+		const nextActiveListItem = this.files[this.files.indexOf(this.state.activeListItem) + 1]
+		if (index !== this.files.length - 1 && !this.state.listItems[nextActiveListItem].disabled) {
 			this.setState({
 				activeListItem: nextActiveListItem
 			})
