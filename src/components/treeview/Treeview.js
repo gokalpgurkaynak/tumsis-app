@@ -46,6 +46,10 @@ class Treeview extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+	componentWillReceiveProps(nextProps) {
+		
+	}
+	
 	collapseAll() {
 		this.setState({expandedListItems: []})
 	}

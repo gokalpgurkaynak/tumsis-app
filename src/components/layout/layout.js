@@ -8,7 +8,8 @@ import {
   Divider,
   IconButton,
   Toolbar,
-  Typography
+  Typography,
+  Button
 } from 'material-ui';
 
 import MenuIcon from 'material-ui-icons/Menu';
@@ -19,6 +20,7 @@ import withStyles from 'material-ui/styles/withStyles';
 
 import classNames from 'classnames';
 import Treeview from '../treeview/Treeview'
+import ToolbarMenu from '../toolbar-menu/toolbar-menu'
 
 //import injectTapEventPlugin from 'react-tap-event-plugin'
 //injectTapEventPlugin();
@@ -98,6 +100,9 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+  title: {
+    flex: 1
+  }
 });
 
 class Index extends Component {
@@ -127,11 +132,12 @@ class Index extends Component {
                 onClick={this.handleDrawerOpen}
                 className={classNames(classes.menuButton, this.state.open && classes.hide)}
               >
-              <MenuIcon />
+                <MenuIcon />
               </IconButton>
-              <Typography type="title" color="inherit" noWrap>
+              <Typography type="title" color="inherit" noWrap className={classNames(classes.title)}>
                 TÜMSİS
               </Typography>
+              <ToolbarMenu></ToolbarMenu>
             </Toolbar>
           </AppBar>
           <Drawer

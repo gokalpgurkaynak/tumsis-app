@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import { reducerManagementForActionType } from '../pages/management/reducers/index'
+import { managementReducer } from './management/reducer-management'
+import { authReducer  } from './auth/reducer-auth'
 
 const rootReducer = combineReducers({
-  management: reducerManagementForActionType
+  auth: authReducer,
+  management: managementReducer,
 })
 
 export default rootReducer
