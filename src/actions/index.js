@@ -6,19 +6,23 @@ import {
   AUTH_ACTION_SET_ORGANIZATION,
   AUTH_ACTION_SET_USER,
   AUTH_ACTION_SET_TOKEN,
-  AUTH_ACTION_LOGIN
+  AUTH_ACTION_LOGIN,
+  SNACKBAR_OPEN,
+  SNACKBAR_CLOSE
 } from './types';
 
-const url = 'http://localhost:50865/oauth2/token'
+const baseUrl = 'http://localhost:50865'
 
 export const login = () => async dispatch => {
+  const url = `${baseUrl}/oauth2/token`
+  
   var params = new URLSearchParams();
   params.append('username', 'Murat');
   params.append('password', '123456');
   params.append('grant_type', 'password');
   const res = await axios.post(url, params);
-  console.log(res)
 
+  // TODO: Handle login error
   const authData = jwtDecode(res.data.access_token)
   dispatch(
     {
@@ -38,6 +42,53 @@ export const login = () => async dispatch => {
         role: authData.role,
       }
   })
+
+  dispatch(
+    {
+      type: SNACKBAR_OPEN,
+      payload: {
+        message: `${authData.unique_name} logged in successfully`
+      }
+    }
+  )
+}
+
+export const logout = () => dispatch => {
+  dispatch(
+    {
+      type: AUTH_ACTION_SET_TOKEN,
+      payload: {
+        token: null
+      }
+    }
+  )
+
+  dispatch(
+    {
+      type: AUTH_ACTION_SET_USER, 
+      payload: {
+        userName: null,
+        displayName: null,
+        role: null,
+      }
+  })
+
+  dispatch(
+    {
+      type: SNACKBAR_OPEN,
+      payload: {
+        message: 'Logged out successfully'
+      }
+    }
+  )
+}
+
+export const dismissSnackbar = () => dispatch => {
+  dispatch(
+    {
+      type: SNACKBAR_CLOSE
+    }
+  )
 }
 
 // export const fetchUser = () => async dispatch => {

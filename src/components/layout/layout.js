@@ -15,12 +15,12 @@ import {
 import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 
-
 import withStyles from 'material-ui/styles/withStyles';
 
 import classNames from 'classnames';
 import Treeview from '../treeview/Treeview'
 import ToolbarMenu from '../toolbar-menu/toolbar-menu'
+import Snackbar from './snackbar'
 
 //import injectTapEventPlugin from 'react-tap-event-plugin'
 //injectTapEventPlugin();
@@ -160,6 +160,7 @@ class Index extends Component {
           <main className={classNames(classes.content, this.state.open && classes.contentShift)}>
             {this.props.children}
           </main>
+          <Snackbar />
         </div>
       </div>
     );
