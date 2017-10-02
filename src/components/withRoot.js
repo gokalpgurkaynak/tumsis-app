@@ -8,17 +8,10 @@ import createContext from '../styles/createContext';
 
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from 'redux';
 
-import Thunk from "redux-thunk";
+import { configureStore } from './configureStore'
 
-import rootReducer from '../reducers/index'
-
-const createStoreWithMiddleware = applyMiddleware(Thunk)(createStore);
-
-const store = createStoreWithMiddleware(
-  rootReducer, 
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = configureStore()
 
 // Apply some reset
 const styles = theme => ({
