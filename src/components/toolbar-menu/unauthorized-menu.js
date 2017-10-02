@@ -30,6 +30,7 @@ class UnauthorizedMenu extends Component {
 
   handleRequestLogin = () => {
     this.props.login();
+    this.setState({ open: false});
   }
 
   render() {

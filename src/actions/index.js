@@ -20,38 +20,50 @@ export const login = () => async dispatch => {
   params.append('username', 'Murat');
   params.append('password', '123456');
   params.append('grant_type', 'password');
-  const res = await axios.post(url, params);
 
-  // TODO: Handle login error
-  const authData = jwtDecode(res.data.access_token)
-  dispatch(
-    {
-      type: AUTH_ACTION_SET_TOKEN,
-      payload: {
-        token: res.data.access_token
-      }
-    }
-  )
-
-  dispatch(
-    {
-      type: AUTH_ACTION_SET_USER, 
-      payload: {
-        userName: authData.unique_name,
-        displayName: authData.sub,
-        role: authData.role,
-      }
-  })
-
-  dispatch(
-    {
-      type: SNACKBAR_OPEN,
-      payload: {
-        message: `${authData.unique_name} logged in successfully`
-      }
-    }
-  )
-}
+  axios
+    .post(url, params)
+    .then( res => {
+      const authData = jwtDecode(res.data.access_token)
+      dispatch(
+        {
+          type: AUTH_ACTION_SET_TOKEN,
+          payload: {
+            token: res.data.access_token
+          }
+        }
+      )
+    
+      dispatch(
+        {
+          type: AUTH_ACTION_SET_USER, 
+          payload: {
+            userName: authData.unique_name,
+            displayName: authData.sub,
+            role: authData.role,
+          }
+      })
+    
+      dispatch(
+        {
+          type: SNACKBAR_OPEN,
+          payload: {
+            message: `${authData.unique_name} logged in successfully`
+          }
+        }
+      )    
+    })
+    .catch(error => {
+      dispatch(
+        {
+          type: SNACKBAR_OPEN,
+          payload: {
+            message: 'Invalid credentials, failed to login'
+          }
+        }
+      )
+    });
+  }
 
 export const logout = () => dispatch => {
   dispatch(

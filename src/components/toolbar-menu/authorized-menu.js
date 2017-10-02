@@ -30,6 +30,7 @@ class AuthorizedMenu extends Component {
 
   handleRequestLogout = () => {
     this.props.logout();
+    this.setState({ open: false});
   }
 
   render() {
