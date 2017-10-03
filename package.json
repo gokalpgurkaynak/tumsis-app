@@ -24,7 +24,8 @@
     "recompose": "latest",
     "redux": "^3.7.2",
     "redux-form": "^7.0.4",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "signalr-no-jquery": "^0.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
