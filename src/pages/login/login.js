@@ -1,16 +1,43 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Route, Redirect } from "react-router-dom";
+
+import { login } from '../../actions/index'
+
 import LoginForm from './login-form'
 
-export default class Login extends Component {
-  handleSubmit = (values) => console.log(values)
-  submit = (values) => {
-    // print the form values to the console
-    console.log(values)
+class Login extends Component {
+  handleSubmit = (values) => {
+    this.props.login(values)
   }
 
   render() {
-    return (
-      <LoginForm onSubmit={this.submit}></LoginForm>
-    );
+    console.log(this.props.auth.token)
+      return (
+        <Route
+          render={(props) => this.props.auth.token !== null
+            ? <Redirect to={{pathname: '/apps/management/page1', state: {from: props.location}}} />
+            : <LoginForm onSubmit={this.handleSubmit}></LoginForm>} 
+        />
+      )
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return bindActionCreators(
+    {
+      login
+    },
+    dispatch
+  )
+}
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    auth: state.auth
   }
 }
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

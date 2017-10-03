@@ -13,15 +13,6 @@ import PrivateRoute  from '../components/private-route'
 
 class Index extends Component {
 
-  loggedIn() { return false}
-  requireAuth(nextState, replace) {
-    if (!this.loggedIn()) {
-      replace({
-        pathname: '/login'
-      })
-    }
-  }
-  
   render() {
     return (
       <Switch>
