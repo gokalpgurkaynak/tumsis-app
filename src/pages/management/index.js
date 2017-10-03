@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import Layout from '../../components/layout/layout'
 import { PageA } from './pages/page-a/page-a'
 import menuConfig from './config/menu-config'
+import PrivateRoute from '../../components/private-route'
 
 const Page =({match}) => {
   return (
