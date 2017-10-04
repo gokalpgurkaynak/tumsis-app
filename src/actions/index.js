@@ -13,12 +13,12 @@ import {
 
 const baseUrl = 'http://localhost:50865'
 
-export const login = () => async dispatch => {
+export const login = (username, password) => async dispatch => {
   const url = `${baseUrl}/oauth2/token`
   
   var params = new URLSearchParams();
-  params.append('username', 'Murat');
-  params.append('password', '123456');
+  params.append('username', username);
+  params.append('password', password);
   params.append('grant_type', 'password');
 
   axios

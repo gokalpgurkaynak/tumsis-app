@@ -9,17 +9,17 @@ import LoginForm from './login-form'
 
 class Login extends Component {
   handleSubmit = (values) => {
-    this.props.login(values)
+    this.props.login(values.username, values.password)
+
   }
 
   render() {
-    console.log(this.props.auth.token)
       return (
         <Route
           render={(props) => this.props.auth.token !== null
             ? <Redirect to={{pathname: '/apps/management/page1', state: {from: props.location}}} />
             : <LoginForm onSubmit={this.handleSubmit}></LoginForm>} 
-        />
+        />      
       )
     }
 }
