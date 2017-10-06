@@ -2,14 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import AuthorizedMenu from './authorized-menu'
-import UnauthorizedMenu from './unauthorized-menu'
-
 
 class ToolbarMenu extends React.Component {
 
 
   render() {
-    return this.props.auth.token ? <AuthorizedMenu /> : <UnauthorizedMenu />;
+    return this.props.auth.token ? <AuthorizedMenu /> : false;
   }
 }
 

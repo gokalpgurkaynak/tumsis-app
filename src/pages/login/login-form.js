@@ -1,5 +1,9 @@
 import { Field, reduxForm } from 'redux-form'
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { submit } from 'redux-form'
+
 
 import { 
   Button,
@@ -10,11 +14,14 @@ import {
 import { withStyles } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 
-
 import { Link } from 'react-router-dom'
 
 import { renderTextField } from '../../components/utils/form-utils'
 import { validate } from './login-form-validate'
+import LoginFormSnackbar from './login-form-snackbar'
+import { login } from './login-form-action'
+
+import { setCredentials } from '../../actions/index'
  
 const styles = theme => ({
   root: {
@@ -34,8 +41,50 @@ const styles = theme => ({
 
 class LoginForm extends Component {
 
+  constructor(props){
+    super(props)
+
+    this.state = {
+      notificationOpen: false,
+      notificationMessage : ''
+    }
+  }
+
+  submitLoginForm = (values) => {
+    console.log(JSON.stringify(values, null, 2))
+    login(values.username, values.password)
+      .then(({token, userName, role, displayName}) => {
+          this.setState(
+            {
+              notificationOpen: true,
+              notificationMessage: `${userName} logged in successfully!`,
+              type: 'info'
+            }
+          )
+         this.props.setCredentials(
+            {
+              token,
+              userName,
+              role,
+              displayName
+            }
+          )
+      })
+      .catch(err => {
+        console.log(err)
+        this.setState(
+          {
+            notificationOpen: true,
+            notificationMessage: err,
+            type: 'error'
+          }
+        )
+      })
+  }
+
+
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props
+    const { pristine, reset, submitting, handleSubmit, invalid } = this.props
     const classes = this.props.classes;
     
     return (
@@ -45,7 +94,7 @@ class LoginForm extends Component {
           <Typography type="headline" component="h3">
             Login
           </Typography>
-            <form onSubmit={ handleSubmit }>
+            <form>
               <div>
                 <Field
                   name='username'
@@ -63,8 +112,8 @@ class LoginForm extends Component {
               </div>
               <Button 
                 raised 
-                disabled={pristine || submitting} 
-                onClick={handleSubmit} 
+                disabled={pristine || submitting || invalid} 
+                onClick={ handleSubmit(this.submitLoginForm) } 
                 className={classes.button}
               >
                 Login
@@ -72,15 +121,44 @@ class LoginForm extends Component {
             </form>
           </Paper>
         </Grid>
+        <LoginFormSnackbar 
+          open={this.state.notificationOpen} 
+          message={this.state.notificationMessage}
+          handleRequestClose={this.handleRequestCloseSnackbar}
+          type={this.state.type}
+          />
       </Grid>
     )
   }
+
+  handleRequestCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ notificationOpen: false });
+  };
 }
 
 LoginForm = reduxForm({
   // a unique name for the form
-  form: 'contact',
+  form: 'login-form',
   validate
 })(LoginForm)
 
-export default withStyles(styles)(LoginForm);
+// map action creators to props
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      setCredentials
+    },
+    dispatch
+  )
+}
+
+LoginForm = connect(null, mapDispatchToProps)(LoginForm)
+
+LoginForm = withStyles(styles)(LoginForm);
+
+export default LoginForm
+

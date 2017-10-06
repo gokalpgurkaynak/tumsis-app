@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 
 import { Snackbar as SB } from 'material-ui'
 import Slide from 'material-ui/transitions/Slide';
-import { dismissSnackbar } from '../../actions/index'
 
 class Snackbar extends Component {
 
@@ -28,7 +27,7 @@ class Snackbar extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators(
     {
-      dismissSnackbar
+      
     },
     dispatch
   )

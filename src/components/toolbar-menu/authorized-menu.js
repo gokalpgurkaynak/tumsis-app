@@ -7,7 +7,7 @@ import Menu, { MenuItem } from 'material-ui/Menu';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
-import { logout } from '../../actions/index'
+import { clearCredentials } from '../../actions/index'
 
 class AuthorizedMenu extends Component {
 
@@ -29,7 +29,7 @@ class AuthorizedMenu extends Component {
 
 
   handleRequestLogout = () => {
-    this.props.logout();
+    this.props.clearCredentials();
     this.setState({ open: false});
   }
 
@@ -61,7 +61,7 @@ class AuthorizedMenu extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators(
     {
-      logout
+      clearCredentials
     },
     dispatch
   )

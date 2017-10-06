@@ -124,7 +124,7 @@ class Index extends Component {
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
+          /<AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
             <Toolbar disableGutters={!this.state.open}>
               <IconButton
                 color="contrast"
@@ -160,7 +160,7 @@ class Index extends Component {
           <main className={classNames(classes.content, this.state.open && classes.contentShift)}>
             {this.props.children}
           </main>
-          <Snackbar />
+          {/* <Snackbar /> */}
         </div>
       </div>
     );

@@ -13,59 +13,28 @@ import {
 
 const baseUrl = 'http://localhost:50865'
 
-export const login = (username, password) => async dispatch => {
-  const url = `${baseUrl}/oauth2/token`
-  
-  var params = new URLSearchParams();
-  params.append('username', username);
-  params.append('password', password);
-  params.append('grant_type', 'password');
+export const setCredentials = ({token, userName, displayName, role}) => async dispatch => {
+  dispatch(
+    {
+      type: AUTH_ACTION_SET_TOKEN,
+      payload: {
+        token
+      }
+    }
+  )
 
-  axios
-    .post(url, params)
-    .then( res => {
-      const authData = jwtDecode(res.data.access_token)
-      dispatch(
-        {
-          type: AUTH_ACTION_SET_TOKEN,
-          payload: {
-            token: res.data.access_token
-          }
-        }
-      )
-    
-      dispatch(
-        {
-          type: AUTH_ACTION_SET_USER, 
-          payload: {
-            userName: authData.unique_name,
-            displayName: authData.sub,
-            role: authData.role,
-          }
-      })
-    
-      dispatch(
-        {
-          type: SNACKBAR_OPEN,
-          payload: {
-            message: `${authData.unique_name} logged in successfully`
-          }
-        }
-      )    
-    })
-    .catch(error => {
-      dispatch(
-        {
-          type: SNACKBAR_OPEN,
-          payload: {
-            message: 'Invalid credentials, failed to login'
-          }
-        }
-      )
-    });
-  }
+  dispatch(
+    {
+      type: AUTH_ACTION_SET_USER, 
+      payload: {
+        userName,
+        displayName,
+        role
+      }
+  })
+}
 
-export const logout = () => dispatch => {
+export const clearCredentials =() => dispatch => {
   dispatch(
     {
       type: AUTH_ACTION_SET_TOKEN,
@@ -84,23 +53,6 @@ export const logout = () => dispatch => {
         role: null,
       }
   })
-
-  dispatch(
-    {
-      type: SNACKBAR_OPEN,
-      payload: {
-        message: 'Logged out successfully'
-      }
-    }
-  )
-}
-
-export const dismissSnackbar = () => dispatch => {
-  dispatch(
-    {
-      type: SNACKBAR_CLOSE
-    }
-  )
 }
 
 // export const fetchUser = () => async dispatch => {

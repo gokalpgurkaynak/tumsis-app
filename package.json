@@ -14,10 +14,10 @@
     "lodash": "^4.17.4",
     "material-ui": "next",
     "material-ui-icons": "^1.0.0-beta.10",
-    "prop-types": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-jss": "latest",
+    "prop-types": "15.6.0",
+    "react": "15.6.2",
+    "react-dom": "15.6.2",
+    "react-jss": "7.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "latest",
@@ -25,7 +25,8 @@
     "redux": "^3.7.2",
     "redux-form": "^7.0.4",
     "redux-thunk": "^2.2.0",
-    "signalr-no-jquery": "^0.1.8"
+    "signalr-no-jquery": "^0.1.8",
+    "typeface-roboto": "^0.0.35"
   },
   "scripts": {
     "start": "react-scripts start",
