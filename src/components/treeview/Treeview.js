@@ -1,167 +1,101 @@
-import React, { Component } from 'react';
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import MuiTreeList from './MuiTreeList'
-//import listItems  from './data'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import ListSubheader from 'material-ui/List/ListSubheader';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import Collapse from 'material-ui/transitions/Collapse';
+import InboxIcon from 'material-ui-icons/MoveToInbox';
+import DraftsIcon from 'material-ui-icons/Drafts';
+import SendIcon from 'material-ui-icons/Send';
+import ExpandLess from 'material-ui-icons/ExpandLess';
+import ExpandMore from 'material-ui-icons/ExpandMore';
+import StarBorder from 'material-ui-icons/StarBorder';
 
-class Treeview extends Component {
-
-  constructor(props){
-    super(props)
-
-    
-    const listItemIsEnabled = this.props.listItems.map((listItem, i) => {
-			if (i >= 12) {
-				return false
-			} else {
-				return true
-			}
-		})
-
-		const files = this.props.listItems
-			.map((listItem, i) => {
-				if (!listItem.children) {
-					return i
-				} else {
-					return null
-				}
-			})
-			.filter((listItemIndex) => !!listItemIndex)
-	
-		const firstFile = files[0]
-			
-		this.state = {
-			expandedListItems: [],
-			activeListItem: firstFile,
-			listItemIsEnabled,
-			listItems: [...this.props.listItems],
-			searchTerm: ''
-		}
-    
-    this.collapseAll = this.collapseAll.bind(this)
-		this.handleSearch = this.handleSearch.bind(this)
-		this.handleTouchTap = this.handleTouchTap.bind(this)
-		this.handleTouchTapInSearchMode = this.handleTouchTapInSearchMode.bind(this)
-		this.moveToPrev = this.moveToPrev.bind(this)
-		this.moveToNext = this.moveToNext.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+const styles = theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    background: theme.palette.background.paper,
+  },
+  nested: {
+    paddingLeft: theme.spacing.unit * 4,
+  },
+  nested2: {
+    paddingLeft: theme.spacing.unit * 8,
   }
+});
 
-	componentWillReceiveProps(nextProps) {
-		
-	}
-	
-	collapseAll() {
-		this.setState({expandedListItems: []})
-	}
+class NestedList extends React.Component {
+  state = { open: true, open2: false };
 
-	handleSearch(searchTerm) {
-		this.setState({searchTerm})
-	}
+  handleClick = () => {
+    this.setState({ open: !this.state.open });
+  };
 
-	handleTouchTap(listItem, index) {
-		if (listItem.children) {
-			const indexOfListItemInArray = this.state.expandedListItems.indexOf(index)
-			if  (indexOfListItemInArray === -1) {
-				this.setState({
-					expandedListItems: this.state.expandedListItems.concat([index])
-				})
-			} else {
-				let newArray = [].concat(this.state.expandedListItems)
-				newArray.splice(indexOfListItemInArray, 1)
-				this.setState({
-					expandedListItems: newArray
-				})
-			}
-		} else {
-			this.setState({
-				activeListItem: index
-			})
-		} 
-	}
-
-	handleTouchTapInSearchMode(listItem, index) {
-		if (!listItem.children) {
-			const expandedListItems = getAllParents(listItem, this.props.listItems)
-
-			this.setState({
-				activeListItem: index,
-				expandedListItems,
-				searchTerm: ''
-			})
-		}
-	}
-
-	moveToPrev() {
-		const index = this.files.indexOf(this.state.activeListItem)
-		const nextActiveListItem = this.files[this.files.indexOf(this.state.activeListItem) - 1]
-		if (index !== 0 && !this.state.listItems[nextActiveListItem].disabled) {
-			this.setState({
-				activeListItem: nextActiveListItem
-			})
-		}
-	}
-
-	moveToNext() {
-		const index = this.files.indexOf(this.state.activeListItem)
-		const nextActiveListItem = this.files[this.files.indexOf(this.state.activeListItem) + 1]
-		if (index !== this.files.length - 1 && !this.state.listItems[nextActiveListItem].disabled) {
-			this.setState({
-				activeListItem: nextActiveListItem
-			})
-		}
-	}
-
-	handleChange(e, i, value) {
-		this.setState({
-			isUsingMuiTheme: value
-		})
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		const {activeListItem, listItems} = this.state
-		if (activeListItem !== prevState.activeListItem) {
-			const expandedListItems = getAllParents(listItems[activeListItem], listItems)
-			this.setState({
-				expandedListItems: expandedListItems
-			})
-		}
-  }
-  
+  handleClick2 = () => {
+    this.setState({ open2: !this.state.open2 });
+  };
   render() {
-    const {listItems, listItemIsEnabled, expandedListItems, activeListItem, searchTerm} = this.state
-	
-    let  treeListJSX = (
-				<MuiTreeList 
-					listItems={listItems}
-					contentKey={'title'}
-					useFolderIcons={true}
-					haveSearchbar={true}
-					listItemIsEnabled={listItemIsEnabled}
-					expandedListItems={expandedListItems}
-					activeListItem={activeListItem}
-					handleTouchTap={this.handleTouchTap}
-					handleTouchTapInSearchMode={this.handleTouchTapInSearchMode}
-					handleSearch={this.handleSearch}
-					searchTerm={searchTerm}
-				>
-					{/* <Subheader>Material UI Version</Subheader> */}
-				</MuiTreeList>			
-      )
-    
+    const classes = this.props.classes;
     return (
-      <div>
-        {treeListJSX}
-      </div>
+      <List className={classes.root} subheader={<ListSubheader>Nested List Items</ListSubheader>}>
+        <ListItem button>
+          <ListItemIcon>
+            <SendIcon />
+          </ListItemIcon>
+          <ListItemText inset primary="Sent mail" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText inset primary="Drafts" />
+        </ListItem>
+        <ListItem button onClick={this.handleClick}>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText inset primary="Inbox" />
+          {this.state.open ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
+          <ListItem button className={classes.nested}>
+            <ListItemIcon>
+              <StarBorder />
+            </ListItemIcon>
+            <ListItemText inset primary="Starred" />
+          </ListItem>
+          <ListItem button className={classes.nested2} onClick={this.handleClick2}>
+            <ListItemIcon>
+              <StarBorder />
+            </ListItemIcon>
+            <ListItemText inset primary="Starred" />
+            {this.state.open2 ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={this.state.open2} transitionDuration="auto" unmountOnExit>
+            <ListItem button className={classes.nested2}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText inset primary="Starred" />
+            </ListItem>
+            <ListItem button className={classes.nested2}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText inset primary="Starred" />
+            </ListItem>
+          </Collapse>
+        </Collapse>
+      </List>
     );
   }
 }
 
-function getAllParents(listItem, listItems, parents=[]) {
-	if (listItem.parentIndex) {
-		return getAllParents(listItems[listItem.parentIndex], listItems, parents.concat([listItem.parentIndex]))
-	} else {
-		return parents
-	}
-}
+NestedList.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-export default Treeview;
+export default withStyles(styles)(NestedList);
