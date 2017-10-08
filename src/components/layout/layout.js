@@ -20,7 +20,6 @@ import withStyles from 'material-ui/styles/withStyles';
 import classNames from 'classnames';
 import Treeview from '../treeview/Treeview'
 import ToolbarMenu from '../toolbar-menu/toolbar-menu'
-import Snackbar from './snackbar'
 
 //import injectTapEventPlugin from 'react-tap-event-plugin'
 //injectTapEventPlugin();
@@ -154,13 +153,12 @@ class Index extends Component {
                 </IconButton>
               </div>
               <Divider />
-              <Treeview listItems={this.props.menuConfig}></Treeview>
+              <Treeview></Treeview>
             </div>
           </Drawer>
           <main className={classNames(classes.content, this.state.open && classes.contentShift)}>
             {this.props.children}
           </main>
-          {/* <Snackbar /> */}
         </div>
       </div>
     );

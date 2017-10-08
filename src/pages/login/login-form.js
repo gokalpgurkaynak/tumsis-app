@@ -18,10 +18,9 @@ import { Link } from 'react-router-dom'
 
 import { renderTextField } from '../../components/utils/form-utils'
 import { validate } from './login-form-validate'
-import LoginFormSnackbar from './login-form-snackbar'
 import { login } from './login-form-action'
 
-import { setCredentials } from '../../actions/index'
+import { setCredentials, openSnackbar } from '../../actions/index'
  
 const styles = theme => ({
   root: {
@@ -54,31 +53,18 @@ class LoginForm extends Component {
     console.log(JSON.stringify(values, null, 2))
     login(values.username, values.password)
       .then(({token, userName, role, displayName}) => {
-          this.setState(
-            {
-              notificationOpen: true,
-              notificationMessage: `${userName} logged in successfully!`,
-              type: 'info'
-            }
-          )
-         this.props.setCredentials(
-            {
-              token,
-              userName,
-              role,
-              displayName
-            }
-          )
-      })
-      .catch(err => {
-        console.log(err)
-        this.setState(
+        this.props.openSnackbar({message: 'Logged in successfully', type: 'error'})
+        this.props.setCredentials(
           {
-            notificationOpen: true,
-            notificationMessage: err,
-            type: 'error'
+            token,
+            userName,
+            role,
+            displayName
           }
         )
+      })
+      .catch(err => {
+        this.props.openSnackbar({message: err, type: 'error'})
       })
   }
 
@@ -121,12 +107,6 @@ class LoginForm extends Component {
             </form>
           </Paper>
         </Grid>
-        <LoginFormSnackbar 
-          open={this.state.notificationOpen} 
-          message={this.state.notificationMessage}
-          handleRequestClose={this.handleRequestCloseSnackbar}
-          type={this.state.type}
-          />
       </Grid>
     )
   }
@@ -150,7 +130,8 @@ LoginForm = reduxForm({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      setCredentials
+      setCredentials,
+      openSnackbar
     },
     dispatch
   )

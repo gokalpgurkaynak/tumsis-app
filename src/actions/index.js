@@ -13,7 +13,26 @@ import {
 
 const baseUrl = 'http://localhost:50865'
 
-export const setCredentials = ({token, userName, displayName, role}) => async dispatch => {
+export const openSnackbar = ({message, type}) => dispatch => {
+  dispatch(
+    {
+      type: SNACKBAR_OPEN,
+      payload: {
+        message,
+        type
+      }
+    }
+  )
+}
+
+export const closeSnackbar = () => dispatch => {
+  dispatch(
+    {
+      type: SNACKBAR_CLOSE
+    }
+  )
+}
+export const setCredentials = ({token, userName, displayName, role}) => dispatch => {
   dispatch(
     {
       type: AUTH_ACTION_SET_TOKEN,

@@ -1,14 +1,13 @@
 import { 
   SNACKBAR_OPEN,
-  SNACKBAR_CLOSE,
-  SNACKBAR_SET_DIRECTION
+  SNACKBAR_CLOSE
 } from '../../actions/types'
 
 
 const initialState = {
   open: false,
   direction: 'down',
-  message: null
+  message: undefined
 }
 
 function snackbarReducer(state = initialState, action) {
@@ -26,9 +25,6 @@ function snackbarReducer(state = initialState, action) {
         open: false,
       }
 
-    case SNACKBAR_SET_DIRECTION:
-      return {...state, message: action.payload.direction}
-      
     default:
       return state
   }
