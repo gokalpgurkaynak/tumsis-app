@@ -24,7 +24,7 @@ export const closeSnackbar = () => dispatch => {
 export const logout =() => dispatch => {
   dispatch({type:AUTH_ACTION_SET_TOKEN,payload:{token:undefined}})
   dispatch({type:AUTH_ACTION_SET_USER,payload:{userName:undefined,displayName:undefined,role:undefined,}})
-  dispatch({type:SNACKBAR_OPEN,payload:{message:'Logged out successfully!'}})
+  dispatch({type:SNACKBAR_OPEN,payload:{message:'Logged out successfully!', type: 'info'}})
 }
 
 export const login = (userName, password) => dispatch => {
