@@ -9,7 +9,7 @@ class PrivateRoute extends Component {
     return (
       <Route
         {...rest}
-        render={(props) => this.props.token !== null
+        render={(props) => this.props.token !== undefined
           ? <Component {...props} />
           : <Redirect to={{pathname: '/login', state: {from: props.location}}} />} 
       />

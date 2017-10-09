@@ -10,7 +10,7 @@ class Login extends Component {
   render() {
       return (
         <Route
-          render={(props) => this.props.auth.token !== null
+          render={(props) => this.props.auth.token !== undefined
             ? <Redirect to={{pathname: '/apps/management/page1', state: {from: props.location}}} />
             : <LoginForm></LoginForm>} 
         />      
@@ -25,4 +25,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(Login)
+export default connect(mapStateToProps, undefined)(Login)

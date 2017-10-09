@@ -7,7 +7,7 @@ class ToolbarMenu extends React.Component {
 
 
   render() {
-    return this.props.auth.token ? <AuthorizedMenu /> : false;
+    return this.props.auth.token && <AuthorizedMenu />;
   }
 }
 

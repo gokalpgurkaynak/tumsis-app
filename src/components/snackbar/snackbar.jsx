@@ -43,9 +43,6 @@ class SimpleSnackbar extends React.Component {
           }}
           message={<span id="message-id">{this.props.snackbar.message}</span>}
           action={[
-            <Button key="undo" color="accent" dense onClick={this.handleRequestClose}>
-              UNDO
-            </Button>,
             <IconButton
               key="close"
               aria-label="Close"

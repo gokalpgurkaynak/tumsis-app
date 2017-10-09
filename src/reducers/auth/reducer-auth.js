@@ -9,11 +9,11 @@ import {
 
 
 const initialState = {
-  user: null,
-  organisation: null,
-  token: null,
-  cypher: null,
-  someKey: null,
+  user: undefined,
+  organisation: undefined,
+  token: undefined,
+  cypher: undefined,
+  someKey: undefined,
 }
 
 function authReducer(state = initialState, action) {

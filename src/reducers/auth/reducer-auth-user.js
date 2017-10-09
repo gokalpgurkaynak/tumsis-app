@@ -1,9 +1,9 @@
 import { AUTH_ACTION_SET_USER } from '../../actions/types'
 
 const initialState = {
-  username: null,
-  displayName: null,
-  role: null
+  username:undefined,
+  displayName:undefined,
+  role:undefined
 }
 
 export function userReducer(state = initialState, action) {

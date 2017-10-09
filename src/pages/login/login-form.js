@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { submit } from 'redux-form'
 
-
 import { 
   Button,
   Grid,
@@ -18,9 +17,8 @@ import { Link } from 'react-router-dom'
 
 import { renderTextField } from '../../components/utils/form-utils'
 import { validate } from './login-form-validate'
-import { login } from './login-form-action'
 
-import { setCredentials, openSnackbar } from '../../actions/index'
+import { login } from '../../actions/index'
  
 const styles = theme => ({
   root: {
@@ -39,33 +37,8 @@ const styles = theme => ({
 });
 
 class LoginForm extends Component {
-
-  constructor(props){
-    super(props)
-
-    this.state = {
-      notificationOpen: false,
-      notificationMessage : ''
-    }
-  }
-
   submitLoginForm = (values) => {
-    console.log(JSON.stringify(values, null, 2))
-    login(values.username, values.password)
-      .then(({token, userName, role, displayName}) => {
-        this.props.openSnackbar({message: 'Logged in successfully', type: 'error'})
-        this.props.setCredentials(
-          {
-            token,
-            userName,
-            role,
-            displayName
-          }
-        )
-      })
-      .catch(err => {
-        this.props.openSnackbar({message: err, type: 'error'})
-      })
+    this.props.login(values.username, values.password);
   }
 
 
@@ -130,8 +103,7 @@ LoginForm = reduxForm({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      setCredentials,
-      openSnackbar
+      login,
     },
     dispatch
   )

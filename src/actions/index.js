@@ -11,67 +11,40 @@ import {
   SNACKBAR_CLOSE
 } from './types';
 
-const baseUrl = 'http://localhost:50865'
+const baseUrl = 'http://localhost/JwtWebApi'
 
 export const openSnackbar = ({message, type}) => dispatch => {
-  dispatch(
-    {
-      type: SNACKBAR_OPEN,
-      payload: {
-        message,
-        type
-      }
-    }
-  )
+  dispatch({type:SNACKBAR_OPEN,payload:{message,type}})
 }
 
 export const closeSnackbar = () => dispatch => {
-  dispatch(
-    {
-      type: SNACKBAR_CLOSE
-    }
-  )
-}
-export const setCredentials = ({token, userName, displayName, role}) => dispatch => {
-  dispatch(
-    {
-      type: AUTH_ACTION_SET_TOKEN,
-      payload: {
-        token
-      }
-    }
-  )
-
-  dispatch(
-    {
-      type: AUTH_ACTION_SET_USER, 
-      payload: {
-        userName,
-        displayName,
-        role
-      }
-  })
+  dispatch({type:SNACKBAR_CLOSE})
 }
 
-export const clearCredentials =() => dispatch => {
-  dispatch(
-    {
-      type: AUTH_ACTION_SET_TOKEN,
-      payload: {
-        token: null
-      }
-    }
-  )
+export const logout =() => dispatch => {
+  dispatch({type:AUTH_ACTION_SET_TOKEN,payload:{token:undefined}})
+  dispatch({type:AUTH_ACTION_SET_USER,payload:{userName:undefined,displayName:undefined,role:undefined,}})
+  dispatch({type:SNACKBAR_OPEN,payload:{message:'Logged out successfully!'}})
+}
 
-  dispatch(
-    {
-      type: AUTH_ACTION_SET_USER, 
-      payload: {
-        userName: null,
-        displayName: null,
-        role: null,
-      }
-  })
+export const login = (userName, password) => dispatch => {
+  const url = `${baseUrl}/oauth2/token`
+  
+  var params = new URLSearchParams();
+  params.append('username', userName);
+  params.append('password', password);
+  params.append('grant_type', 'password');
+
+  axios.post(url, params)
+    .then(res => {
+      const authData = jwtDecode(res.data.access_token)
+      dispatch({ type: AUTH_ACTION_SET_TOKEN, payload: { token: res.data.access_token }})
+      dispatch({ type: AUTH_ACTION_SET_USER, payload: { userName: authData.unique_name, displayName: authData.sub, role: authData.role }})
+      dispatch({ type:SNACKBAR_OPEN,payload:{message: `${userName} successfully logged in`,type: 'success'}})
+    })
+    .catch(err => {
+      dispatch({type:SNACKBAR_OPEN,payload:{message: `${userName} failed to logged in`,type: 'fail'}})
+    })
 }
 
 // export const fetchUser = () => async dispatch => {
