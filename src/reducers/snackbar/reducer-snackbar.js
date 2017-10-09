@@ -16,7 +16,8 @@ function snackbarReducer(state = initialState, action) {
       return {
         ...state, 
         open: true,
-        message: action.payload.message
+        message: action.payload.message,
+        type: action.payload.type
       }
 
     case SNACKBAR_CLOSE:

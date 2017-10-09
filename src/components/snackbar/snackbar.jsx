@@ -10,12 +10,22 @@ import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
 import {openSnackbar, closeSnackbar } from '../../actions/index'
+import { red, green, blue } from 'material-ui/colors';
 
 const styles = theme => ({
+  success: {
+    background: green[500]
+  },
+  fail: {
+    background: red[500]
+  },
+  info: {
+    background: blue[500]
+  },
   close: {
     width: theme.spacing.unit * 4,
     height: theme.spacing.unit * 4,
-  },
+  }
 });
 
 class SimpleSnackbar extends React.Component {
@@ -29,6 +39,7 @@ class SimpleSnackbar extends React.Component {
 
   render() {
     const { classes } = this.props;
+    
     return (
         <Snackbar
           anchorOrigin={{
@@ -39,7 +50,7 @@ class SimpleSnackbar extends React.Component {
           autoHideDuration={6000}
           onRequestClose={this.handleRequestClose}
           SnackbarContentProps={{
-            'aria-describedby': 'message-id',
+            classes: { root: this.props.classes[this.props.snackbar.type]}
           }}
           message={<span id="message-id">{this.props.snackbar.message}</span>}
           action={[
