@@ -1,3 +1,6 @@
 export const messages = {
-    'app.greeting': 'Merhaba!'
+    'app.logout': 'Çıkış',
+    'app.controlPanelText' : 'Kontrol Panel',
+    'app.alarmsText': 'Alarmlar',
+    'app.devicesText': 'Cihazlar'
 }

@@ -22,7 +22,7 @@ class Index extends Component {
           <PrivateRoute path="/apps/management" component={Management}/>
           <Route path="/apps/management-test" component={Management}/>
           <PrivateRoute path="/apps/device-a" component={DeviceA} />
-          <Route path="/login" component={Login} />
+          <Route exact path="/login" component={Login} />
           <Route component={Page404} />
         </Switch>
         <Snackbar></Snackbar>

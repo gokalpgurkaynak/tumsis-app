@@ -4,12 +4,36 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
 
 import Menu, { MenuItem } from 'material-ui/Menu';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
+import LogoutIcon from 'material-ui-icons/ExitToApp';
+import LanguageIcon from 'material-ui-icons/Language'
+
+import { withStyles } from 'material-ui/styles';
+import blue from 'material-ui/colors/blue';
+import green from 'material-ui/colors/green';
+import red from 'material-ui/colors/red';
+
 
 import { logout, openSnackbar, changeLocale } from '../../actions/index'
+
+const styles = theme => ({
+  icon: {
+    margin: theme.spacing.unit,
+  },
+  iconBlue: {
+    fill: blue[500],
+  },
+  iconHover: {
+    fill: red[500],
+    '&:hover': {
+      fill: green[200],
+    },
+  },
+});
 
 class AuthorizedMenu extends Component {
 
@@ -40,6 +64,8 @@ class AuthorizedMenu extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+    
     return (
       <div>
       <IconButton
@@ -57,13 +83,19 @@ class AuthorizedMenu extends Component {
         anchorEl={this.state.anchorEl}
       >
         <MenuItem onClick={this.handleRequestLogout}>
+          <LogoutIcon className={classNames(classes.icon, classes.iconHover)}/>
           <FormattedMessage
-            id="app.greeting"
-            defaultMessage="Translation not avail!"
+            id="app.logout"
           />
         </MenuItem>
-        <MenuItem onClick={() => this.handleRequestSelectLanguage('en')}>English</MenuItem>
-        <MenuItem onClick={() => this.handleRequestSelectLanguage('tr')}>Türkçe</MenuItem>
+        <MenuItem onClick={() => this.handleRequestSelectLanguage('en')}>
+          <LanguageIcon className={classNames(classes.icon, classes.iconHover)}/>
+          English
+        </MenuItem>
+        <MenuItem onClick={() => this.handleRequestSelectLanguage('tr')}>
+          <LanguageIcon className={classNames(classes.icon, classes.iconHover)}/>
+          Türkçe
+        </MenuItem>
       </Menu>
     </div>
     );
@@ -87,4 +119,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(AuthorizedMenu)
+AuthorizedMenu = connect(null, mapDispatchToProps)(AuthorizedMenu)
+
+export default withStyles(styles)(AuthorizedMenu);

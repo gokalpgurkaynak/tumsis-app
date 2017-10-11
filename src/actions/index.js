@@ -1,6 +1,8 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode'
 import { updateIntl } from 'react-intl-redux'
+import { messages as trMessages } from '../locales/tr-TR'
+import { messages as enMessages } from '../locales/en-US'
 
 import { 
   MANAGEMENT_ACTION_FOO,
@@ -51,16 +53,13 @@ export const login = (userName, password) => dispatch => {
 
 
 export const changeLocale = (locale) => dispatch => {
-  const messages = {
-    'en': {
-      'app.greeting': 'Hello!'
-    },
-    'tr': {
-      'app.greeting': 'Merhaba!'
-    }
-  }
+  
+  let messages = {}
+  if (locale === 'tr') messages = trMessages;
+  if (locale === 'en') messages = enMessages;
+   
     
-  dispatch(updateIntl({ locale, messages: messages[locale]}))
+  dispatch(updateIntl({ locale, messages}))
 }
 //export const changeLocale = (locale) => dispatch => {
 //  const url = `${process.env.REACT_APP_LOCALE_SERVICE_URL}/${locale}.json`

@@ -29,7 +29,7 @@ const drawerWidth = 300;
 const styles = theme => ({
   root: {
     width: '100%',
-    //marginTop: theme.spacing.unit * 3,
+    minHeight: '100vh',
     zIndex: 1,
     overflow: 'hidden',
   },
@@ -37,7 +37,8 @@ const styles = theme => ({
     position: 'relative',
     display: 'flex',
     width: '100%',
-    height: '100%',
+    minHeight: '100vh', // Makes the hero full height until we get some more content.
+    
   },
   appBar: {
     position: 'absolute',
@@ -123,7 +124,7 @@ class Index extends Component {
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          /<AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
+          <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
             <Toolbar disableGutters={!this.state.open}>
               <IconButton
                 color="contrast"

@@ -1,0 +1,3 @@
+export AlarmBadge = (props) => {
+    
+}
