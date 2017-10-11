@@ -2,7 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import Thunk from "redux-thunk";
 import throttle from 'lodash/throttle'
 
-import rootReducer from '../reducers/index'
+import { rootReducer } from '../reducers/index'
+
 import {loadState, saveState} from './localstorage'
 import signalr from '../middlewares/signalr';
 

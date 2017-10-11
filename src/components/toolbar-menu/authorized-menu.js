@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { FormattedMessage } from 'react-intl';
+
 
 import Menu, { MenuItem } from 'material-ui/Menu';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
-import { logout, openSnackbar } from '../../actions/index'
+import { logout, openSnackbar, changeLocale } from '../../actions/index'
 
 class AuthorizedMenu extends Component {
 
@@ -33,6 +35,10 @@ class AuthorizedMenu extends Component {
     this.setState({ open: false});
   }
 
+  handleRequestSelectLanguage = (locale) => {
+    this.props.changeLocale(locale)
+  }
+
   render() {
     return (
       <div>
@@ -50,8 +56,14 @@ class AuthorizedMenu extends Component {
         onRequestClose={this.handleRequestClose}
         anchorEl={this.state.anchorEl}
       >
-        <MenuItem onClick={this.handleRequestLogout}>Logout</MenuItem>
-        <MenuItem onClick={this.handleRequestSelectLanguage}>Languge</MenuItem>
+        <MenuItem onClick={this.handleRequestLogout}>
+          <FormattedMessage
+            id="app.greeting"
+            defaultMessage="Translation not avail!"
+          />
+        </MenuItem>
+        <MenuItem onClick={() => this.handleRequestSelectLanguage('en')}>English</MenuItem>
+        <MenuItem onClick={() => this.handleRequestSelectLanguage('tr')}>Türkçe</MenuItem>
       </Menu>
     </div>
     );
@@ -62,7 +74,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return bindActionCreators(
     {
       logout,
-      openSnackbar
+      openSnackbar,
+      changeLocale
     },
     dispatch
   )

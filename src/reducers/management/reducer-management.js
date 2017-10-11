@@ -1,7 +1,7 @@
 import { MANAGEMENT_ACTION_FOO } from '../../actions/types'
 
 const initialState = {
-  management: null,
+  management: undefined,
 }
 
 function managementReducer(state = initialState, action) {

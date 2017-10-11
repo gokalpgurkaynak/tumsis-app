@@ -1,5 +1,7 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode'
+import { updateIntl } from 'react-intl-redux'
+
 import { 
   MANAGEMENT_ACTION_FOO,
   ORGANISATION_ACTION_SET,
@@ -46,6 +48,33 @@ export const login = (userName, password) => dispatch => {
       dispatch({type:SNACKBAR_OPEN,payload:{message: `${userName} failed to logged in`,type: 'fail'}})
     })
 }
+
+
+export const changeLocale = (locale) => dispatch => {
+  const messages = {
+    'en': {
+      'app.greeting': 'Hello!'
+    },
+    'tr': {
+      'app.greeting': 'Merhaba!'
+    }
+  }
+    
+  dispatch(updateIntl({ locale, messages: messages[locale]}))
+}
+//export const changeLocale = (locale) => dispatch => {
+//  const url = `${process.env.REACT_APP_LOCALE_SERVICE_URL}/${locale}.json`
+//  axios.get(url, {headers: {'cache-control': 'public, max-age=0'
+//  }})
+//    .then(messages => {
+//      dispatch(updateIntl({ locale, messages }))
+//    })
+//    .catch( err => {
+//      dispatch({type:SNACKBAR_OPEN,payload:{message: `Failed to get resource file for ${locale}`,type: 'fail'}})
+//    })
+//
+//  
+//}
 
 // export const fetchUser = () => async dispatch => {
 //   const res = await axios.get('/api/current_user');

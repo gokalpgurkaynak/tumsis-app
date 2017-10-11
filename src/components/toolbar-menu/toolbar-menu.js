@@ -16,4 +16,4 @@ const mapStateToProps = (state, ownProps) => {
     auth: state.auth
   }
 }
-export default connect(mapStateToProps, null)(ToolbarMenu)
+export default connect(mapStateToProps, undefined)(ToolbarMenu)
