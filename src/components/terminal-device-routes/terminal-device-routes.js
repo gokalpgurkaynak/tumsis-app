@@ -11,7 +11,7 @@ class TerminalDeviceRoutes extends Component {
         <Route 
           key={index} 
           path={`${this.props.match.url}/${device.name}`} 
-          render={ props => (<device.component {...props} />)}
+          component={device.component}
         />
     )
 
