@@ -15,27 +15,27 @@ const terminalConfig = {
     [
         {
             name: 'Modem',
-            componentName: 'Modem'
+            component: Modem
         },
         {
             name: 'SSPA',
-            componentName: 'SSPA'
+            component: SSPA
         },
         {
             name: 'Beacon',
-            componentName: 'Beacon'
+            component: Beacon
         },
         {
             name: 'ACU',
-            componentName: 'ACU'
+            component: ACU
         },
         {
             name: 'MTek Down Converter',
-            componentName: 'MTekDownConverter'
+            component: MTekDownConverter
         },
         {
             name: 'MTek Up Converter',
-            componentName: 'MTekUpConverter'
+            component: MTekUpConverter
         }
     ]
 }

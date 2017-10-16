@@ -115,7 +115,7 @@ class NestedList extends React.Component {
 
       return (
         <ListItem button className={classes.nested}>
-          <Link to={`/${terminal.name}/${device.componentName}`}>
+          <Link to={`/${terminal.name}/${device.name}`}>
             <ListItemText primary={device.name} />
             <Badge classes={{badge: classes.badge, colorPrimary: colorMap[device.alarmSeverity]}} badgeContent={device.alarmCount} color='primary' />
           </Link>
