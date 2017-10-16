@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class MTekUpConverter extends Component {
     render() {
         return (
             <div>
-                
+                MTek Up Converter
             </div>
         );
     }
 }
-
-MTekUpConverter.propTypes = {
-
-};
 
 export default MTekUpConverter;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class MTekDownConverter extends Component {
     render() {
@@ -10,9 +9,5 @@ class MTekDownConverter extends Component {
         );
     }
 }
-
-MTekDownConverter.propTypes = {
-
-};
 
 export default MTekDownConverter;

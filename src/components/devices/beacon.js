@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class Beacon extends Component {
     render() {
@@ -10,9 +9,5 @@ class Beacon extends Component {
         );
     }
 }
-
-Beacon.propTypes = {
-
-};
 
 export default Beacon;

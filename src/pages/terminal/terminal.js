@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from "react-router-dom";
 
 import Layout from '../../components/layout/layout'
 import TerminalDeviceRoutes from '../../components/terminal-device-routes/terminal-device-routes'

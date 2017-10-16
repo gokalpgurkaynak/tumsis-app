@@ -1,6 +1,8 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 import classnames from 'classnames'
 import React from 'react';
+import {connect} from 'react-redux'
+import { Link, withRouter, Router } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { red, orange, lime } from 'material-ui/colors';
 import { withStyles } from 'material-ui/styles';
@@ -29,7 +31,7 @@ const styles = theme => ({
     background: theme.palette.background.paper
   },
   nested: {
-    paddingLeft: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing.unit * 9,
   },
   badge: {
     margin: `0 ${theme.spacing.unit * 2}px`,
@@ -101,8 +103,10 @@ class NestedList extends React.Component {
     this.setState({ open2: !this.state.open2 });
   };
 
-  renderDevices = (classes) => 
-    devices.map( device => {
+  renderDevices = () => {
+    const { terminal, classes } = this.props;
+
+    return terminal.devices.map( device => {
       const colorMap = {
         'minor':classes.colorPrimaryCriticalAlert,
         'major': classes.colorPrimaryMajorAlert,
@@ -111,17 +115,20 @@ class NestedList extends React.Component {
 
       return (
         <ListItem button className={classes.nested}>
-          <ListItemText primary={device.name} />
-          <Badge classes={{badge: classes.badge, colorPrimary: colorMap[device.alarmSeverity]}} badgeContent={device.alarmCount} color='primary' />
+          <Link to={`/${terminal.name}/${device.componentName}`}>
+            <ListItemText primary={device.name} />
+            <Badge classes={{badge: classes.badge, colorPrimary: colorMap[device.alarmSeverity]}} badgeContent={device.alarmCount} color='primary' />
+          </Link>
         </ListItem>
       )
       }
     )
+  }
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     return (
-      <List className={classes.root} subheader={<ListSubheader>Nested List Items</ListSubheader>}>
+      <List className={classes.root} subheader={<ListSubheader>Terminal Devices</ListSubheader>}>
         <ListItem button>
           <ListItemIcon classes={{root: classes.listItemRoot}}>
             <SatelliteIcons />
@@ -143,8 +150,8 @@ class NestedList extends React.Component {
         </ListItem>
         <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
           {
-            this.renderDevices(classes)
-          }          
+            this.renderDevices()
+          }       
         </Collapse>
       </List>
     );
@@ -155,4 +162,12 @@ NestedList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(NestedList);
+NestedList =  withStyles(styles)(NestedList);
+
+const mapStateToProps = (state) => {
+  return {
+      terminal: state.terminal
+  }
+}
+
+export default withRouter(connect(mapStateToProps, undefined)(NestedList))

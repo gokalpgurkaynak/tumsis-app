@@ -1,7 +1,6 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import JssProvider from 'react-jss/lib/JssProvider';
 import { withStyles, MuiThemeProvider } from 'material-ui/styles';
 import wrapDisplayName from 'recompose/wrapDisplayName';
@@ -10,7 +9,6 @@ import createContext from '../styles/createContext';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { IntlProvider } from 'react-intl-redux'
-import { addLocaleData } from 'react-intl'
 
 import { configureStore } from './configure-store'
 import { configureLocale } from './configure-locale'

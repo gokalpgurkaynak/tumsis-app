@@ -5,17 +5,14 @@ import { messages as trMessages } from '../locales/tr-TR'
 import { messages as enMessages } from '../locales/en-US'
 
 import { 
-  MANAGEMENT_ACTION_FOO,
-  ORGANISATION_ACTION_SET,
-  AUTH_ACTION_SET_ORGANIZATION,
   AUTH_ACTION_SET_USER,
   AUTH_ACTION_SET_TOKEN,
-  AUTH_ACTION_LOGIN,
   SNACKBAR_OPEN,
   SNACKBAR_CLOSE
 } from './types';
 
-const baseUrl = 'http://localhost/JwtWebApi'
+//const baseUrl = 'http://localhost/JwtWebApi'
+const baseUrl = 'http://localhost:50865'
 
 export const openSnackbar = ({message, type}) => dispatch => {
   dispatch({type:SNACKBAR_OPEN,payload:{message,type}})
