@@ -1,6 +1,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import { 
   AppBar,
@@ -149,6 +150,9 @@ class Index extends Component {
           >
             <div className={classes.drawerInner}>
               <div className={classes.drawerHeader}>
+                  <Typography type="title" color="inherit" noWrap className={classNames(classes.title)}>
+                    {this.props.terminal.name}
+                  </Typography>
                 <IconButton onClick={this.handleDrawerClose}>
                   <ChevronLeftIcon />
                 </IconButton>
@@ -170,4 +174,10 @@ Index.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Index);
+const mapStateToProps = (state) => {
+  return {
+      terminal: state.terminal
+  }
+}
+
+export default connect(mapStateToProps, undefined)(withStyles(styles)(Index));

@@ -10,7 +10,7 @@ class Login extends Component {
       return (
         <Route
           render={(props) => this.props.auth.token !== undefined
-            ? <Redirect to={{pathname: '/Gezgin/ACU', state: {from: props.location}}} />
+            ? <Redirect to={{pathname: `/${this.props.terminal.name}`, state: {from: props.location}}} />
             : <LoginForm></LoginForm>} 
         />      
       )
@@ -20,7 +20,8 @@ class Login extends Component {
 // map state data as props
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    terminal: state.terminal
   }
 }
 
