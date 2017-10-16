@@ -20,7 +20,7 @@ export const configureStore = () => {
     // Throttle the save operation at most to 1000ms
   store.subscribe(
     throttle(
-      () => saveState(store.getState(),1000)
+      () => saveState({auth: store.getState().auth},1000)
     )
   )
 

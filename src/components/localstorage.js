@@ -24,7 +24,7 @@ export const loadState = () => {
 
 export const saveState = (state) => {
     try {
-      const serializedState = JSON.stringify(state.auth)
+      const serializedState = JSON.stringify(state)
       localStorage.setItem('tumsis-state', serializedState)
     }
     catch(err){
