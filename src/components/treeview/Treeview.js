@@ -21,6 +21,8 @@ import AlertIcon from 'material-ui-icons/NewReleases'
 import DevicesIcon from 'material-ui-icons/List'
 import MailIcon from 'material-ui-icons/Mail'
 
+import DeviceSummary from '../device-summary/device-summary'
+
 
 import { FormattedMessage } from 'react-intl';
 
@@ -47,6 +49,9 @@ const styles = theme => ({
   },
   listItemRoot: {
     marginRight: 0
+  },
+  deviceSummaryRef: {
+    flex: '1 1 auto'
   }
 });
 
@@ -58,39 +63,6 @@ const AlarmsText = () =>
 
 const DevicesText = () => 
   <FormattedMessage id="app.devicesText" />
-
-const devices = [
-  {
-    name: 'Modem',
-    alarmCount: 1,
-    alarmSeverity: 'critical'
-  },
-  {
-    name: 'SSPA',
-    alarmCount: 6,
-    alarmSeverity: 'major'
-  },
-  {
-    name: 'Beacon',
-    alarmCount: 12,
-    alarmSeverity: 'minor'
-  },
-  {
-    name: 'ACU',
-    alarmCount: 4,
-    alarmSeverity: 'major'
-  },
-  {
-    name: 'MTek Down Converter',
-    alarmCount: 6,
-    alarmSeverity: 'minor'
-  },
-  {
-    name: 'MTek Up Converter',
-    alarmCount: 6,
-    alarmSeverity: 'critical'
-  }
-]
 
 class NestedList extends React.Component {
   state = { open: true, open2: false };
@@ -107,19 +79,8 @@ class NestedList extends React.Component {
     const { terminal, classes } = this.props;
 
     return terminal.devices.map( device => {
-      const colorMap = {
-        'minor':classes.colorPrimaryCriticalAlert,
-        'major': classes.colorPrimaryMajorAlert,
-        'critical': classes.colorPrimaryMinorAlert
-      }
-
       return (
-        <ListItem button className={classes.nested}>
-          <Link to={`/${terminal.name}/${device.name}`}>
-            <ListItemText primary={device.name} />
-            <Badge classes={{badge: classes.badge, colorPrimary: colorMap[device.alarmSeverity]}} badgeContent={device.alarmCount} color='primary' />
-          </Link>
-        </ListItem>
+        <DeviceSummary deviceName={device.name} classes={classes} terminalName={terminal.name}/>
       )
       }
     )
