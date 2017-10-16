@@ -20,7 +20,7 @@ class TerminalDeviceRoutes extends Component {
     'SSPA': SSPA,
     'Beacon': Beacon,
     'MTekDownConverter': MTekDownConverter,
-    'MTekDownConverter': MTekUpConverter
+    'MTekUpConverter': MTekUpConverter
   }
 
   deviceRenderer = (componentName) => { 

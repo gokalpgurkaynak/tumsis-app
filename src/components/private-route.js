@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
 
 class PrivateRoute extends Component {
@@ -23,4 +23,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, undefined)(PrivateRoute);
+export default withRouter(connect(mapStateToProps, undefined)(PrivateRoute));

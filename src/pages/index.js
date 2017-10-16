@@ -8,7 +8,8 @@ import {
 } from 'react-redux'
 import {
   Route,
-  Switch
+  Switch,
+  withRouter
 } from "react-router-dom";
 
 import withRoot from '../components/withRoot'
@@ -44,5 +45,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-Index = connect(mapStateToProps, undefined) (Index)
+Index = withRouter(connect(mapStateToProps, undefined) (Index))
 export default withRoot(Index);
