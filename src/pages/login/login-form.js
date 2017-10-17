@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { submit } from 'redux-form'
+import { FormattedMessage } from 'react-intl';
 
 import { 
   Button,
@@ -51,14 +52,16 @@ class LoginForm extends Component {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
           <Typography type="headline" component="h3">
-            Login
+            <FormattedMessage
+              id='login.loginText'
+            />
           </Typography>
             <form>
               <div>
                 <Field
                   name='username'
                   component={renderTextField}
-                  label='Username'
+                  label={<FormattedMessage id='login.userName'/>}
                 />
               </div>
               <div>
@@ -66,7 +69,7 @@ class LoginForm extends Component {
                   name='password'
                   component={renderTextField}
                   type='password'
-                  label="Password"
+                  label={<FormattedMessage id='login.password'/>}
                 />
               </div>
               <Button 
@@ -75,7 +78,7 @@ class LoginForm extends Component {
                 onClick={ handleSubmit(this.submitLoginForm) } 
                 className={classes.button}
               >
-                Login
+                <FormattedMessage id='login.loginText'/>
               </Button>
             </form>
           </Paper>

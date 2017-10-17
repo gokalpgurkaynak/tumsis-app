@@ -1,5 +1,13 @@
 export default {
     'tr': {
+        form: {
+            required: `{value} boş bırakılamaz`
+        },
+        login: {
+            loginText: 'Giriş',
+            userName: 'Kullanıcı adı',
+            password: 'Şifre',
+        },
         layout: {
             nav: {
                 controlPanelText: 'Kontrol Paneli',
@@ -15,6 +23,14 @@ export default {
         }
     },
     'en': {
+        form: {
+            required: `{value} is required`
+        },
+        login: {
+            loginText: 'Login',
+            userName: 'User Name',
+            password: 'Password'
+        },
         layout: {
             nav: {
                 controlPanelText: 'Control Panel',
