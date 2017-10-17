@@ -1,8 +1,9 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode'
 import { updateIntl } from 'react-intl-redux'
-import { messages as trMessages } from '../locales/tr-TR'
-import { messages as enMessages } from '../locales/en-US'
+import messages from '../locales/messages'
+import { flattenMessages } from '../locales/locale-utils'
+
 
 import { 
   AUTH_ACTION_SET_USER,
@@ -41,7 +42,7 @@ export const login = (userName, password) => dispatch => {
       const authData = jwtDecode(res.data.access_token)
       dispatch({ type: AUTH_ACTION_SET_TOKEN, payload: { token: res.data.access_token }})
       dispatch({ type: AUTH_ACTION_SET_USER, payload: { userName: authData.unique_name, displayName: authData.sub, role: authData.role }})
-      dispatch({ type:SNACKBAR_OPEN,payload:{message: `${userName} successfully logged in`,type: 'success'}})
+      dispatch({ type: SNACKBAR_OPEN,payload:{message: `${userName} successfully logged in`,type: 'success'}})
     })
     .catch(err => {
       dispatch({type:SNACKBAR_OPEN,payload:{message: `${userName} failed to logged in`,type: 'fail'}})
@@ -49,28 +50,17 @@ export const login = (userName, password) => dispatch => {
 }
 
 
-export const changeLocale = (locale) => dispatch => {
+export const loadLocales = (locale) => dispatch => {
   
-  let messages = {}
-  if (locale === 'tr') messages = trMessages;
-  if (locale === 'en') messages = enMessages;
-   
-    
-  dispatch(updateIntl({ locale, messages}))
+  const flatMessages = flattenMessages(messages[locale])
+
+  dispatch(updateIntl({ locale, messages: flatMessages}))
 }
-//export const changeLocale = (locale) => dispatch => {
-//  const url = `${process.env.REACT_APP_LOCALE_SERVICE_URL}/${locale}.json`
-//  axios.get(url, {headers: {'cache-control': 'public, max-age=0'
-//  }})
-//    .then(messages => {
-//      dispatch(updateIntl({ locale, messages }))
-//    })
-//    .catch( err => {
-//      dispatch({type:SNACKBAR_OPEN,payload:{message: `Failed to get resource file for ${locale}`,type: 'fail'}})
-//    })
-//
-//  
-//}
+
+export const changeLocale = (locale) => dispatch => {
+  const flatMessages = flattenMessages(messages[locale])
+  dispatch(updateIntl({ locale, messages: flatMessages}))
+}
 
 // export const fetchUser = () => async dispatch => {
 //   const res = await axios.get('/api/current_user');

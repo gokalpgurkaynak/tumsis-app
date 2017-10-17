@@ -44,6 +44,9 @@ function withRoot(BaseComponent) {
       if (jssStyles && jssStyles.parentNode) {
         jssStyles.parentNode.removeChild(jssStyles);
       }
+
+          
+
     }
 
     render() {

@@ -6,6 +6,7 @@ import React, {
 import {
   connect
 } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import {
   Route,
   Switch,
@@ -18,6 +19,8 @@ import Snackbar from '../components/snackbar/snackbar'
 import Login from './login/login'
 import Page404 from './page404/page404'
 import Terminal from './terminal/terminal'
+
+import { loadLocales } from '../actions/index'  
 
 import PrivateRoute from '../components/private-route'
 
@@ -45,5 +48,14 @@ const mapStateToProps = (state) => {
   }
 }
 
-Index = withRouter(connect(mapStateToProps, undefined) (Index))
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      loadLocales
+    },
+    dispatch
+  )
+}
+
+Index = withRouter(connect(mapStateToProps, mapDispatchToProps) (Index))
 export default withRoot(Index);

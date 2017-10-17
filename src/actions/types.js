@@ -13,5 +13,5 @@ export const SNACKBAR_OPEN = 'SNACKBAR_OPEN'
 export const SNACKBAR_CLOSE = 'SNACKBAR_CLOSE'
 export const SNACKBAR_SET_DIRECTION = 'SNACKBAR_SET_DIRECTION'
 
-// lang
-export const LANG_SET = 'LANG_SET'
+// locales
+export const LOAD_LOCALES = 'LOAD_LOCALES'

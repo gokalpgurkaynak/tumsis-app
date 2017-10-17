@@ -56,13 +56,13 @@ const styles = theme => ({
 });
 
 const ControlPanelText = () => 
-  <FormattedMessage id="app.controlPanelText" />
+  <FormattedMessage id="layout.nav.controlPanelText" />
 
 const AlarmsText = () => 
-  <FormattedMessage id="app.alarmsText" />
+  <FormattedMessage id="layout.nav.alarmsText" />
 
 const DevicesText = () => 
-  <FormattedMessage id="app.devicesText" />
+  <FormattedMessage id="layout.nav.devicesText" />
 
 class NestedList extends React.Component {
   state = { open: true, open2: false };

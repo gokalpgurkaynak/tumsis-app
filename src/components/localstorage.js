@@ -1,24 +1,32 @@
-import { messages } from '../locales/tr-TR.js'
+import messages from '../locales/messages'
+import { flattenMessages } from '../locales/locale-utils'
 
-const initialState = {
-  intl: {
-    defaultLocale: 'tr',
-    locale: 'tr',
-    messages,
-  }
-}
-
+const defaultLocale = 'tr'
+const flatMessages = flattenMessages(messages[defaultLocale])
 
 export const loadState = () => {
-  try {
-    const serializedState = localStorage.getItem('tumsis-state')
-    if (serializedState === null){
-      return initialState
+  const defaultState = {
+    intl: {
+      defaultLocale,
+      locale: defaultLocale,
+      messages: flatMessages,
     }
-    return JSON.parse(serializedState)
+  }
+
+  let state = { ... defaultState}
+  
+  try {
+    const serializedState = localStorage.getItem('tumsis-state');
+    if (serializedState !== null) {
+      state = {
+        ...JSON.parse(serializedState),
+        ...defaultState
+      } 
+      return state;
+    }
   }
   catch(err){
-    return initialState
+    return state;
   }
 }
 

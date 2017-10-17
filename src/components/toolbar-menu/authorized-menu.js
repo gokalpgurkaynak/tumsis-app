@@ -17,7 +17,6 @@ import blue from 'material-ui/colors/blue';
 import green from 'material-ui/colors/green';
 import red from 'material-ui/colors/red';
 
-
 import { logout, openSnackbar, changeLocale } from '../../actions/index'
 
 const styles = theme => ({
@@ -85,14 +84,14 @@ class AuthorizedMenu extends Component {
         <MenuItem onClick={this.handleRequestLogout}>
           <LogoutIcon className={classNames(classes.icon, classes.iconHover)}/>
           <FormattedMessage
-            id="app.logout"
+            id="layout.toolbar.logout"
           />
         </MenuItem>
-        <MenuItem onClick={() => this.handleRequestSelectLanguage('en')}>
+        <MenuItem onClick={() => this.props.changeLocale('en')}>
           <LanguageIcon className={classNames(classes.icon, classes.iconHover)}/>
           English
         </MenuItem>
-        <MenuItem onClick={() => this.handleRequestSelectLanguage('tr')}>
+        <MenuItem onClick={() => this.props.changeLocale('tr')}>
           <LanguageIcon className={classNames(classes.icon, classes.iconHover)}/>
           Türkçe
         </MenuItem>
