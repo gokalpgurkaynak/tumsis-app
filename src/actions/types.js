@@ -15,3 +15,6 @@ export const SNACKBAR_SET_DIRECTION = 'SNACKBAR_SET_DIRECTION'
 
 // locales
 export const LOAD_LOCALES = 'LOAD_LOCALES'
+
+// signalr
+export const SIGNALR_NOTIFICATION = 'SIGNALR_NOTIFICATION'

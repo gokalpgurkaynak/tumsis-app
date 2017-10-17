@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
+import { intlReducer } from 'react-intl-redux'
 import { managementReducer } from './management/reducer-management'
 import { authReducer  } from './auth/reducer-auth'
 import { snackbarReducer } from './snackbar/reducer-snackbar'
 import { terminalReducer } from './terminal/reducer-terminal'
-import { reducer as formReducer } from 'redux-form'
-import { intlReducer } from 'react-intl-redux'
+import { signalrReducer } from './signalr/reducer-signalr'
+
 
 
 export const rootReducer = combineReducers({
@@ -13,5 +15,6 @@ export const rootReducer = combineReducers({
   snackbar: snackbarReducer,
   form: formReducer,
   intl: intlReducer,
-  terminal: terminalReducer
+  terminal: terminalReducer,
+  signalr: signalrReducer
 })

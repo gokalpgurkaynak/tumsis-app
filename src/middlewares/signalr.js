@@ -1,5 +1,6 @@
 import { hubConnection } from 'signalr-no-jquery'
-
+import { SIGNALR_NOTIFICATION } from '../actions/types'
+ 
 const signalr = (store,url) => {
     const connection = hubConnection(url);
 
@@ -8,7 +9,7 @@ const signalr = (store,url) => {
     //client callbacks from server
     hubProxy.on("channels",function(list){
         console.log("signalr channels callback", list)
-        store.dispatch({ type: "SERVER_CALLED_ME", list });
+        store.dispatch({ type: SIGNALR_NOTIFICATION, payload: { list } });
     });
 
     connection.start()
