@@ -89,7 +89,7 @@ class NestedList extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <List className={classes.root} subheader={<ListSubheader>Terminal Devices</ListSubheader>}>
+      <List className={classes.root}>
         <ListItem button>
           <ListItemIcon classes={{root: classes.listItemRoot}}>
             <SatelliteIcons />

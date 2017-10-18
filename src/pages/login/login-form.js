@@ -33,7 +33,8 @@ const styles = theme => ({
     'align-items': 'center'
   },
   button: {
-    margin: theme.spacing.unit * 3
+    margin: theme.spacing.unit * 3,
+    textTransform: 'none'
   }
 });
 

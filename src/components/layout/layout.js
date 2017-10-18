@@ -1,7 +1,6 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { 
   AppBar,
@@ -121,6 +120,10 @@ class Index extends Component {
 
   render() {
     const { classes } = this.props;
+    const title = 
+      <Typography type="title" color="inherit" noWrap className={classNames(classes.title)}>
+        TÜMSİS
+      </Typography>
 
     return (
       <div className={classes.root}>
@@ -135,9 +138,6 @@ class Index extends Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography type="title" color="inherit" noWrap className={classNames(classes.title)}>
-                TÜMSİS
-              </Typography>
               <ToolbarMenu></ToolbarMenu>
             </Toolbar>
           </AppBar>
@@ -180,4 +180,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, undefined)(withStyles(styles)(Index));
+export default withRouter(connect(mapStateToProps, undefined)(withStyles(styles)(Index)));

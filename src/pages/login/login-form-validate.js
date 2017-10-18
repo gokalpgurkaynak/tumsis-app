@@ -9,10 +9,7 @@ export const validate = values => {
   ]
   requiredFields.forEach(field => {
     if (!values[field.id]) {
-      //errors[field] = `${field} is required`
-      //errors[field.id] = <FormattedMessage id='form.required' values={{value: field.label}} />
       errors[field.id] = <FormattedMessage id='form.required' values={{value: <FormattedMessage id={field.label}/>}} />
-      
     }
   })
 

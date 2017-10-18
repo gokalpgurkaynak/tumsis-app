@@ -6,8 +6,8 @@ import { withStyles, MuiThemeProvider } from 'material-ui/styles';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import createContext from '../styles/createContext';
 
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import { IntlProvider } from 'react-intl-redux'
 
 import { configureStore } from './configure-store'

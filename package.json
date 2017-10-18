@@ -28,7 +28,8 @@
     "redux-form": "^7.0.4",
     "redux-thunk": "^2.2.0",
     "signalr-no-jquery": "^0.1.8",
-    "typeface-roboto": "^0.0.35"
+    "typeface-roboto": "^0.0.35",
+    "url-search-params-polyfill": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
