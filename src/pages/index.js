@@ -19,6 +19,7 @@ import Snackbar from '../components/snackbar/snackbar'
 import Login from './login/login'
 import Page404 from './page404/page404'
 import Terminal from './terminal/terminal'
+import Grommet from './grommet/index'
 
 import { loadLocales } from '../actions/index'  
 
@@ -33,6 +34,7 @@ class Index extends Component {
       <div>
         <Switch>
           <Route exact path="/login" component={Login} />
+          <Route exact path="/grommet" component={Grommet} />
           <PrivateRoute path={`/${terminal.name}`} component={Terminal}/>
           <Route component={Page404} />
         </Switch>
