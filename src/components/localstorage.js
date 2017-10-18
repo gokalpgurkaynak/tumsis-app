@@ -22,8 +22,8 @@ export const loadState = () => {
         ...JSON.parse(serializedState),
         ...defaultState
       } 
-      return state;
     }
+    return state;    
   }
   catch(err){
     return state;

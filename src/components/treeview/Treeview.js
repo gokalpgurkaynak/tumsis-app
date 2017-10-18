@@ -55,15 +55,6 @@ const styles = theme => ({
   }
 });
 
-const ControlPanelText = () => 
-  <FormattedMessage id="layout.nav.controlPanelText" />
-
-const AlarmsText = () => 
-  <FormattedMessage id="layout.nav.alarmsText" />
-
-const DevicesText = () => 
-  <FormattedMessage id="layout.nav.devicesText" />
-
 class NestedList extends React.Component {
   state = { open: true, open2: false };
 
@@ -86,6 +77,18 @@ class NestedList extends React.Component {
     )
   }
 
+  renderItem = (id) => {
+    const { terminal, classes } = this.props
+    return (
+      <Link to={`/${terminal.name}/alarms`}  className={classes.deviceSummaryRef}>
+        <FormattedMessage id={id} />
+      </Link>
+    )
+  }
+
+  renderDevicesText = () => 
+    <FormattedMessage id="layout.nav.devicesText" />
+
   render() {
     const { classes } = this.props;
     return (
@@ -94,19 +97,19 @@ class NestedList extends React.Component {
           <ListItemIcon classes={{root: classes.listItemRoot}}>
             <SatelliteIcons />
           </ListItemIcon>
-          <ListItemText inset primary={<ControlPanelText />} />
+          <ListItemText inset primary={this.renderItem('layout.nav.alarmsText')} />
         </ListItem>
         <ListItem button>
           <ListItemIcon classes={{root: classes.listItemRoot}}>
             <AlertIcon />
           </ListItemIcon>
-          <ListItemText inset primary={<AlarmsText />} />
+          <ListItemText inset primary={this.renderItem('layout.nav.controlPanelText')} />
         </ListItem>
         <ListItem button onClick={this.handleClick}>
           <ListItemIcon classes={{root: classes.listItemRoot}}>
               { this.state.open ? <ExpandLess /> : <ExpandMore /> }
           </ListItemIcon>
-          <ListItemText inset primary={<DevicesText />} />
+          <ListItemText inset primary={this.renderDevicesText()} />
           <Badge classes={{badge: classes.badge, colorPrimary: classes.colorPrimaryCriticalAlert}} badgeContent={'12'} color='primary' />
         </ListItem>
         <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
