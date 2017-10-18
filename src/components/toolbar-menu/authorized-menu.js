@@ -118,6 +118,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-AuthorizedMenu = connect(null, mapDispatchToProps)(AuthorizedMenu)
+AuthorizedMenu = connect(mapStateToProps, mapDispatchToProps)(AuthorizedMenu)
 
 export default withStyles(styles)(AuthorizedMenu);

@@ -8,8 +8,7 @@ import {
   Divider,
   IconButton,
   Toolbar,
-  Typography,
-  Button
+  Typography
 } from 'material-ui';
 import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
@@ -120,10 +119,6 @@ class Index extends Component {
 
   render() {
     const { classes } = this.props;
-    const title = 
-      <Typography type="title" color="inherit" noWrap className={classNames(classes.title)}>
-        TÜMSİS
-      </Typography>
 
     return (
       <div className={classes.root}>

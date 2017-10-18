@@ -1,25 +1,17 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
-import classnames from 'classnames'
 import React from 'react';
 import {connect} from 'react-redux'
-import { Link, withRouter, Router } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { red, orange, lime } from 'material-ui/colors';
 import { withStyles } from 'material-ui/styles';
-import ListSubheader from 'material-ui/List/ListSubheader';
 import Badge from 'material-ui/Badge';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Collapse from 'material-ui/transitions/Collapse';
-import InboxIcon from 'material-ui-icons/MoveToInbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
-import SendIcon from 'material-ui-icons/Send';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
-import StarBorder from 'material-ui-icons/StarBorder';
 import SatelliteIcons from 'material-ui-icons/Satellite'
 import AlertIcon from 'material-ui-icons/NewReleases'
-import DevicesIcon from 'material-ui-icons/List'
-import MailIcon from 'material-ui-icons/Mail'
 
 import DeviceSummary from '../device-summary/device-summary'
 

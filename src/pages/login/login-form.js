@@ -2,7 +2,6 @@ import { Field, reduxForm } from 'redux-form'
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { submit } from 'redux-form'
 import { FormattedMessage } from 'react-intl';
 
 import { 
@@ -12,9 +11,6 @@ import {
   Typography
 } from 'material-ui'
 import { withStyles } from 'material-ui/styles';
-import blue from 'material-ui/colors/blue';
-
-import { Link } from 'react-router-dom'
 
 import { renderTextField } from '../../components/utils/form-utils'
 import { validate } from './login-form-validate'
@@ -45,7 +41,7 @@ class LoginForm extends Component {
 
 
   render() {
-    const { pristine, reset, submitting, handleSubmit, invalid } = this.props
+    const { pristine, submitting, handleSubmit, invalid } = this.props
     const classes = this.props.classes;
     
     return (

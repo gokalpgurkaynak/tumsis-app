@@ -13,7 +13,7 @@ export const loadState = () => {
     }
   }
 
-  let state = { ... defaultState}
+  let state = { ...defaultState}
   
   try {
     const serializedState = localStorage.getItem('tumsis-state');
