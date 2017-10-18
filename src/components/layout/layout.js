@@ -20,6 +20,7 @@ import withStyles from 'material-ui/styles/withStyles';
 import classNames from 'classnames';
 import Treeview from '../treeview/Treeview'
 import ToolbarMenu from '../toolbar-menu/toolbar-menu'
+import Breadcrumb from './breadcrumbs.js'
 
 //import injectTapEventPlugin from 'react-tap-event-plugin'
 //injectTapEventPlugin();
@@ -57,7 +58,7 @@ const styles = theme => ({
   },
   menuButton: {
     marginLeft: 12,
-    marginRight: 20,
+    marginRight: 12,
   },
   hide: {
     display: 'none',
@@ -138,6 +139,7 @@ class Index extends Component {
               >
                 <MenuIcon />
               </IconButton>
+              <Breadcrumb {...this.props} />
               <ToolbarMenu></ToolbarMenu>
             </Toolbar>
           </AppBar>
