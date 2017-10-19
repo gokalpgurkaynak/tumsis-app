@@ -4,12 +4,10 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { FormattedMessage } from 'react-intl';
 
-import { 
-  Button,
-  Grid,
-  Paper,
-  Typography
-} from 'material-ui'
+import Button from 'material-ui/Button'
+import Grid from 'material-ui/Grid'
+import Paper from 'material-ui/Paper'
+import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles';
 
 import { renderTextField } from '../../components/utils/form-utils'

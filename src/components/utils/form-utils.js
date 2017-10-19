@@ -1,5 +1,8 @@
-import { TextField, Checkbox, RadioGroup, Select } from 'material-ui';
 import React from 'react'
+import Checkbox from 'material-ui/Checkbox';
+import { RadioGroup } from 'material-ui/Radio';
+import Select from 'material-ui/Select';
+import TextField from 'material-ui/TextField';
 
 export const renderTextField = ({
   input,
