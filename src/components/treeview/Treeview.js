@@ -43,7 +43,8 @@ const styles = theme => ({
     marginRight: 0
   },
   deviceSummaryRef: {
-    flex: '1 1 auto'
+    flex: '1 1 auto',
+    textDecoration: 'none'
   }
 });
 
@@ -61,9 +62,9 @@ class NestedList extends React.Component {
   renderDevices = () => {
     const { terminal, classes } = this.props;
 
-    return terminal.devices.map( device => {
+    return terminal.devices.map( (device,index) => {
       return (
-        <DeviceSummary deviceName={device.name} classes={classes} terminalName={terminal.name}/>
+        <DeviceSummary key={index} deviceName={device.name} classes={classes} terminalName={terminal.name}/>
       )
       }
     )
@@ -102,7 +103,7 @@ class NestedList extends React.Component {
               { this.state.open ? <ExpandLess /> : <ExpandMore /> }
           </ListItemIcon>
           <ListItemText inset primary={this.renderDevicesText()} />
-          <Badge classes={{badge: classes.badge, colorPrimary: classes.colorPrimaryCriticalAlert}} badgeContent={'12'} color='primary' />
+          <Badge children={''} classes={{badge: classes.badge, colorPrimary: classes.colorPrimaryCriticalAlert}} badgeContent={'12'} color='primary' />
         </ListItem>
         <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
           {

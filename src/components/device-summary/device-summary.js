@@ -54,7 +54,7 @@ export default class DeviceSummary extends React.Component{
           <Link to={`/${terminalName}/${device.name}`} className={classes.deviceSummaryRef} >
             <ListItemText primary={device.name} />
           </Link>
-          <Badge classes={{badge: classes.badge, colorPrimary: colorMap[device.alarmSeverity]}} badgeContent={device.alarmCount} color='primary' />
+          <Badge children={''} classes={{badge: classes.badge, colorPrimary: colorMap[device.alarmSeverity]}} badgeContent={device.alarmCount} color='primary' />
         </ListItem>
       );
     }

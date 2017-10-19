@@ -133,7 +133,7 @@ class Index extends Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Breadcrumb {...this.props} />
+              <Breadcrumb location={this.props.location} />
               <ToolbarMenu></ToolbarMenu>
             </Toolbar>
           </AppBar>
