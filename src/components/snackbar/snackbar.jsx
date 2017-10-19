@@ -1,15 +1,17 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Snackbar from 'material-ui/Snackbar';
+import { bindActionCreators } from 'redux'
+import { withStyles } from 'material-ui'
+import blue from 'material-ui/colors/blue';
+import green from 'material-ui/colors/green';
+import red from 'material-ui/colors/red';
 import IconButton from 'material-ui/IconButton';
+import Snackbar from 'material-ui/Snackbar';
 import CloseIcon from 'material-ui-icons/Close';
-import {openSnackbar, closeSnackbar } from '../../actions/index'
-import { red, green, blue } from 'material-ui/colors';
+import PropTypes from 'prop-types';
+import {closeSnackbar, openSnackbar} from '../../actions/index'
 
 const styles = theme => ({
   success: {

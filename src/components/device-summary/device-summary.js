@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Badge from 'material-ui/Badge';
-import { ListItem, ListItemText } from 'material-ui/List';
+import ListItem from 'material-ui/List/ListItem';
+import ListItemText from 'material-ui/List/ListItemText';
 
 const devices = [
     {

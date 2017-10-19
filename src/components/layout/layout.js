@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { 
-  AppBar,
-  Drawer,
-  Divider,
-  IconButton,
-  Toolbar,
-  Typography
-} from 'material-ui';
-import MenuIcon from 'material-ui-icons/Menu';
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
+import {withRouter} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-import withStyles from 'material-ui/styles/withStyles';
+import AppBar from 'material-ui/AppBar'
+import Drawer from 'material-ui/Drawer'
+import Divider from 'material-ui/Divider'
+import IconButton from 'material-ui/IconButton'
+import Toolbar from 'material-ui/Toolbar'
+import Typography from 'material-ui/Typography'
 
-import classNames from 'classnames';
+import MenuIcon from 'material-ui-icons/Menu'
+import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
+
+import withStyles from 'material-ui/styles/withStyles'
+
+import classNames from 'classnames'
 import Treeview from '../treeview/Treeview'
 import ToolbarMenu from '../toolbar-menu/toolbar-menu'
 import Breadcrumb from './breadcrumbs.js'
